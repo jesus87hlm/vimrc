@@ -51,7 +51,6 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,6 +141,10 @@ try
     colorscheme desert
 catch
 endtry
+
+if &term =~ '256color'
+    set t_ut=
+endif
 
 set background=dark
 
