@@ -49,7 +49,7 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+"command W w !sudo tee % > /dev/null
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -73,6 +73,9 @@ if has("win16") || has("win32")
 else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
+
+" Show line numbers
+set number
 
 "Always show current position
 set ruler
@@ -219,6 +222,8 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Change word and paste yank
+" :map <C-a> cw<C-r>0<ESC>
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
