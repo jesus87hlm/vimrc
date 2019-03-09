@@ -69,9 +69,9 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.hg\*,.svn\*
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
 " Show line numbers
@@ -218,7 +218,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Change word and paste yank
-" :map <C-a> cw<C-r>0<ESC>
+:map <C-a> cw<C-r>0<ESC>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
@@ -258,7 +259,10 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" Generate ctags on save
+au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags"  ] && .git/hooks/ctags' &
 
+set tags+=.git/tags
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
